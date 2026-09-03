@@ -5,7 +5,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
 import { getCollection } from "astro:content";
 
-const DEFAULT_URL = new URL("https://prismlauncher.org");
+const DEFAULT_URL = new URL("https://projecttick.org");
 
 const processor = remark()
 	.use(remarkRehype, { allowDangerousHtml: true })
@@ -44,7 +44,7 @@ export const GET: APIRoute = async ({ site = DEFAULT_URL }) => {
     <sparkle:version>${release_version}</sparkle:version>
     <description><![CDATA[${content}]]></description>
     <pubDate>${data.date.toISOString()}</pubDate>${minMac}
-    <enclosure sparkle:os="macos" url="https://github.com/PrismLauncher/PrismLauncher/releases/download/${release_version}/PrismLauncher-macOS-${release_version}.${macos_file_extension || "tar.gz"}" length="0" type="application/octet-stream" sparkle:edSignature="${macos_signature}"/>
+    <enclosure sparkle:os="macos" url="https://github.com/Project-Tick/MeshMC/releases/download/${release_version}/MeshMC-macOS-${release_version}.${macos_file_extension || "tar.gz"}" length="0" type="application/octet-stream" sparkle:edSignature="${macos_signature}"/>
   </item>`;
 		}),
 	);
