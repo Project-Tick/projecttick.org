@@ -1,6 +1,6 @@
 export const SOCIAL_LINKS = [
 	{
-		href: "https://discord.gg/ArX2nafFz2",
+		href: "https://discord.gg/PMxPTqwEwj",
 		label: "Discord",
 		icon: "simple-icons:discord",
 	},

@@ -18,7 +18,7 @@ export default defineConfig({
 	},
 
 	redirects: {
-		"/discord": "https://discord.gg/ArX2nafFz2",
+		"/discord": "https://discord.gg/PMxPTqwEwj",
 		"/github": "https://github.com/Project-Tick/MeshMC",
 		"/patreon": "https://twitter.com/MeshMC",
 	},
@@ -80,7 +80,7 @@ export default defineConfig({
 				{
 					icon: "discord",
 					label: "Discord",
-					href: "https://discord.gg/ArX2nafFz2",
+					href: "https://discord.gg/PMxPTqwEwj",
 				},
 				{
 					icon: "github",
