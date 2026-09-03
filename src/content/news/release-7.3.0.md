@@ -1,0 +1,56 @@
+---
+title: "MeshMC Release 7.3.0, now available"
+description: "Introduction of the MMCO plugin system, establishing a formal extension architecture with a defined SDK and lifecycle."
+date: 2026-04-16
+slug: "release-7.3.0"
+release_version: "7.3.0"
+minimum_macos_version: 12.0.0
+macos_file_extension: zip
+tags:
+  - Release
+---
+
+### Highlights
+
+* Introduction of the **MMCO plugin system**, establishing a formal extension architecture with a defined SDK and lifecycle. 
+* Addition of the **MMCO Module Exception 1.0**, enabling non-GPL compatible plugins under controlled conditions. 
+* First-party plugins introduced, including **BackupSystem** and **NVIDIAPrime**, demonstrating real-world MMCO usage. 
+* Significant improvements to **plugin management, UI integration, and runtime behavior**. 
+* Initial **fuzzing infrastructure** added for multiple core libraries (cmark, json4cpp, neozip, tomlplusplus). 
+
+### Changelog
+
+#### Added
+
+* MMCO plugin system (SDK, loader, lifecycle management, metadata, hooks) 
+* MeshMC MMCO Module Exception 1.0 and updated licensing across the codebase 
+* Plugin SDK CMake integration and example plugin 
+* BackupSystem plugin for instance backup management (initial implementation) 
+* Pre-launch backup support and settings integration for BackupSystem 
+* NVIDIAPrime plugin for NVIDIA GPU offloading support 
+* Plugin launch modifiers and improved plugin management system
+* Plugin metadata enhancements (code links, About dialog integration) 
+* Plugin build and staging configuration options
+* Backup-related UI assets (icons across themes)
+
+#### Changed
+
+* Core architecture transitioned to a **plugin-first model with MMCO as a first-class subsystem** 
+* Licensing model updated from plain GPL-3.0-or-later to **GPL-3.0-or-later WITH MMCO exception** 
+* Plugin tab location updated in the UI 
+* Backup plugin UI labels and messaging improved 
+* Help menu actions refactored in MainWindow 
+* LoggedProcess and ModFolderPage enhanced to support runtime resource/shader pack addition 
+* CMake configuration updated for SDK and plugin staging 
+* Platform compatibility improvements (conditional `unistd.h`) 
+
+#### Fixed
+
+* Fixed launcher icon issues 
+* Improved macOS icon rendering (Tahoe compatibility) 
+* REUSE compliance issues resolved 
+* General formatting and minor internal fixes 
+
+#### Removed
+
+* Removed parallel execution in CI test commands for stability
