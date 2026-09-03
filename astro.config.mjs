@@ -21,6 +21,7 @@ export default defineConfig({
 		"/discord": "https://discord.gg/PMxPTqwEwj",
 		"/github": "https://github.com/Project-Tick/MeshMC",
 		"/patreon": "https://twitter.com/MeshMC",
+		"/product/meshmc/feed.xml": "/feed/feed.xml",
 	},
 
 	integrations: [
