@@ -74,7 +74,7 @@ If you would like to go a bit further, LambdAurora maintains a [very detailed li
 
 If you don't want to search and install these mods manually, then try the [Fabulously Optimized](https://modrinth.com/modpack/fabulously-optimized) modpack, which supports almost all OptiFine features.
 
-[See the installation instructions](https://fabulously-optimized.gitbook.io/modpack/readme/install-instructions#prism-launcher) for Prism Launcher.
+[See the installation instructions](https://fabulously-optimized.gitbook.io/modpack/readme/install-instructions#multimc) for MeshMC.
 
 ## <img src="https://raw.githubusercontent.com/neoforged/websites/66732fa21e1a0d7b73df5c2f18a5345bbe13871f/assets/img/content/branding/icon.png" alt="NeoForge Logo" width=30px style="display: inline-block"> NeoForge Mods
 

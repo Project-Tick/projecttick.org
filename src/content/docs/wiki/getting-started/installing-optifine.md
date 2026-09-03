@@ -21,11 +21,11 @@ Go to <https://optifine.net/downloads> and find your respective Minecraft versio
 
 Once found, click **mirror**. Now click the **download** button to download your OptiFine jar file.
 
-Remember where you have kept your **.jar** file, and continue to Prism Launcher. Follow the steps from the [download mods](../download-mods) page, and choose either Forge or Fabric.
+Remember where you have kept your **.jar** file, and continue to MeshMC. Follow the steps from the [download mods](../download-mods) page, and choose either Forge or Fabric.
 
 ### <img src="https://avatars0.githubusercontent.com/u/1390178?s=400&v=4" alt="Forge Logo" width=20px style="display: inline-block"> Forge
 
-Forge does not require any extra steps besides adding the **.jar** for OptiFine into Prism Launcher.
+Forge does not require any extra steps besides adding the **.jar** for OptiFine into MeshMC.
 
 **NOTE:** Some versions of OptiFine **don't** work on Forge!
 
@@ -35,7 +35,7 @@ Forge does not require any extra steps besides adding the **.jar** for OptiFine 
 
 Fabric, unlike Forge, does not natively support OptiFine, and will require the installation of OptiFabric.
 
-Go into the **Mods** tab on the left side and then in the right menu select **Download mods**, then select _CurseForge_ and search _OptiFabric_. Once found, click **Select mod for download**, and then press **OK**. You may now proceed with adding the .jar file for OptiFine into Prism Launcher.
+Go into the **Mods** tab on the left side and then in the right menu select **Download mods**, then select _CurseForge_ and search _OptiFabric_. Once found, click **Select mod for download**, and then press **OK**. You may now proceed with adding the .jar file for OptiFine into MeshMC.
 
 If there were results shown in the search, your Minecraft version may not be compatible with OptiFabric. In this case, you can either try the Forge method, or choose to wait until support for your Minecraft version is added.
 
@@ -43,7 +43,7 @@ If there were results shown in the search, your Minecraft version may not be com
 
 There's no way of running OptiFine on Quilt at the time of writing.
 
-### Adding the .jar file into Prism Launcher
+### Adding the .jar file into MeshMC
 
 Go into the **Mods** tab on the left side of the **Edit** menu, and then click on the **Add file** option to the right of the window.
 
@@ -59,13 +59,13 @@ Once found, click **mirror**. Now click the **download** button to download your
 
 Execute the OptiFine jar file and change the selected folder location if required, then hit the **"Extract"** button and save the jarmod file somewhere you'll remember.
 
-Now in Prism Launcher edit the instance you wish to install OptiFine on, open the **Version** tab and click **Add to Minecraft.jar**, select the extracted OptiFine jarmod (the file ending in \_MOD.jar) and confirm.
+Now in MeshMC edit the instance you wish to install OptiFine on, open the **Version** tab and click **Add to Minecraft.jar**, select the extracted OptiFine jarmod (the file ending in \_MOD.jar) and confirm.
 
 OptiFine will now be installed as a jarmod in that instance, so you can remove the installer and extracted jarmod.
 
-From OptiFine Version **H1_pre2** the instructions for installing OptiFine on Prism Launcher have changed. Make sure to have the version of Minecraft that you wish to install OptiFine on installed through the vanilla launcher.
+From OptiFine Version **H1_pre2** the instructions for installing OptiFine on MeshMC have changed. Make sure to have the version of Minecraft that you wish to install OptiFine on installed through the vanilla launcher.
 
 1. Extract the MOD jar with the OptiFine installer
 2. Open it with any archiver
 3. Move all files from the folder called **notch** to the top folder of the archive file and click **save**.
-4. Open Prism Launcher, edit the instance you wish to install OptiFine on, open the **Version** tab and click **Add to Minecraft.jar**, select the extracted / modified OptiFine jarmod (the file ending in \_MOD.jar) and confirm.
+4. Open MeshMC, edit the instance you wish to install OptiFine on, open the **Version** tab and click **Add to Minecraft.jar**, select the extracted / modified OptiFine jarmod (the file ending in \_MOD.jar) and confirm.

@@ -172,8 +172,8 @@ sudo pacman -S \
 We use [Git](https://git-scm.com/) for our version control. The command below will clone the repository, and fetch all submodules that come with it
 
 ```console
-git clone --recursive https://github.com/PrismLauncher/PrismLauncher.git
-cd PrismLauncher
+git clone --recursive https://github.com/Project-Tick/MeshMC.git
+cd MeshMC
 ```
 
 **The rest of the documentation assumes you have already cloned the repository.**
@@ -287,28 +287,9 @@ DESTDIR="$pkgdir" cmake --install build --config Debug # If you're installing fo
 </TabItem>
 </Tabs>
 
-## Building with Nix (Linux and macOS)
-
-Nix is a tool for handling reproducible builds across multiple platforms.
-
-After [installing Nix](https://nix.dev/install-nix) and checking out the repository, you can run the following command to build a debug package:
-
-```bash
-nix build --print-build-logs '.#prismlauncher-debug'
-```
-
-You can also enter a development shell with all of the tools required to build manually:
-
-```bash
-nix-shell
-cmake --preset linux_debug
-cmake --build build
-cmake --install build
-```
-
 ## Building a Flatpak (Linux)
 
-Flatpaks allow for you to quickly build Prism and run it on any distribution
+Flatpaks allow for you to quickly build MeshMC and run it on any distribution
 
 Make sure Flathub is [setup](https://flathub.org/setup).
 
@@ -317,10 +298,10 @@ Make sure Flathub is [setup](https://flathub.org/setup).
 flatpak install flathub org.flatpak.Builder
 
 # Clone the source repository
-git clone --recursive https://github.com/prismlauncher/PrismLauncher
+git clone --recursive https://github.com/flathub/org.projecttick.MeshMC
 
 # Enter the Flatpak directory
-cd PrismLauncher/flatpak
+cd org.projecttick.MeshMC
 
 # Run the build
 flatpak run org.flatpak.Builder \
@@ -330,5 +311,5 @@ flatpak run org.flatpak.Builder \
   --ccache \
   --repo=repo \
   builddir \
-  org.prismlauncher.PrismLauncher.yml
+  org.projecttick.MeshMC.yml
 ```

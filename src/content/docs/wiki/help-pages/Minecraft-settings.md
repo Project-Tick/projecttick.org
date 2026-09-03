@@ -2,7 +2,7 @@
 title: Minecraft Settings
 ---
 
-![Minecraft tab under PrismLauncher settings](/img/screenshots/SettingsMinecraftDark.png)
+![Minecraft tab under MeshMC settings](/img/screenshots/SettingsMinecraftDark.png)
 
 ### Window Size
 

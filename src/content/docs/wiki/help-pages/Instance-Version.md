@@ -2,7 +2,7 @@
 title: Version
 ---
 
-![Version tab under PrismLauncher Instances](/img/screenshots/InstanceVersionDark.png)
+![Version tab under MeshMC Instances](/img/screenshots/InstanceVersionDark.png)
 
 This page is for managing the core parts of the Instance.
 

@@ -15,7 +15,7 @@ You can [find out how to download it here](https://github.com/mozilla/sccache?ta
 
 To set up VS Code, you can download [the C/C++ extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), since it provides IntelliSense auto complete, linting, formatting, and various other features.
 
-Then, you need to set up the configuration. Go into the command palette and open up C/C++: Edit Configurations (UI). There, add a new configuration for PrismLauncher.
+Then, you need to set up the configuration. Go into the command palette and open up C/C++: Edit Configurations (UI). There, add a new configuration for MeshMC.
 
 1. Add the path to your Qt `include` folder to `includePath`
 2. Add `-L/{path to your Qt installation}/lib` to `compilerArgs`
@@ -32,7 +32,7 @@ Here is an example of what `.vscode/c_cpp_properties.json` looks like on macOS w
 {
 	"configurations": [
 		{
-			"name": "Mac (PrismLauncher)",
+			"name": "Mac (MeshMC)",
 			"includePath": [
 				"${workspaceFolder}/**",
 				"/opt/homebrew/opt/qt@6/include/**"
@@ -74,7 +74,7 @@ Here is an example of what `.vscode/c_cpp_properties.json` looks like on macOS w
    - Target: `All targets`
    - Choose the newly added configuration as default
 
-Now you should be able to build and test Prism Launcher with the `Build` and `Run` buttons.
+Now you should be able to build and test MeshMC with the `Build` and `Run` buttons.
 
 ## Qt Creator
 

@@ -22,4 +22,4 @@ If it is missing, you can install it from **Edit** > **Mods** > **Download mods*
 
 ## <img src="https://raw.githubusercontent.com/QuiltMC/art/master/brand/svg/quilt_logo_dark.svg" alt="QuiltMC Logo" width=30px style="display: inline-block"> Quilt
 
-For installing Quilt in Prism Launcher, follow the [quilt wiki](https://quiltmc.org/install/prismlauncher/).
+For installing Quilt in MeshMC, follow the [quilt wiki](https://quiltmc.org/install/multimc/).

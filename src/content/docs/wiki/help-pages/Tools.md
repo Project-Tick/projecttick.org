@@ -2,7 +2,7 @@
 title: External Tools
 ---
 
-![External Tools tab under PrismLauncher settings](/img/screenshots/SettingsExternalToolsDark.png)
+![External Tools tab under MeshMC settings](/img/screenshots/SettingsExternalToolsDark.png)
 
 <!-- TODO: add description of what each tool does -->
 

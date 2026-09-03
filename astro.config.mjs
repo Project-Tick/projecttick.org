@@ -9,7 +9,7 @@ import cloudflare from "@astrojs/cloudflare";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
-	site: process.env.DEPLOY_URL || "https://prismlauncher.org",
+	site: process.env.DEPLOY_URL || "https://projecttick.org",
 	output: "static",
 	adapter: cloudflare(),
 
@@ -19,17 +19,13 @@ export default defineConfig({
 
 	redirects: {
 		"/discord": "https://discord.gg/ArX2nafFz2",
-		"/github": "https://github.com/PrismLauncher/PrismLauncher",
-		"/mastodon": "https://floss.social/@PrismLauncher",
-		"/matrix": "https://matrix.to/#/#prismlauncher:matrix.org",
-		"/reddit": "https://www.reddit.com/r/PrismLauncher/",
-		"/twitter": "https://twitter.com/PrismLauncher",
-		"/bluesky": "https://bsky.app/profile/prismlauncher.org",
+		"/github": "https://github.com/Project-Tick/MeshMC",
+		"/patreon": "https://twitter.com/MeshMC",
 	},
 
 	integrations: [
 		starlight({
-			title: "Prism Launcher Wiki",
+			title: "Project Tick Wiki",
 
 			customCss: ["./src/styles/starlight.css"],
 
@@ -82,39 +78,19 @@ export default defineConfig({
 
 			social: [
 				{
-					icon: "mastodon",
-					label: "Mastodon",
-					href: "https://floss.social/@PrismLauncher",
-				},
-				{
-					icon: "blueSky",
-					label: "Bluesky",
-					href: "https://bsky.app/profile/prismlauncher.org",
-				},
-				{
 					icon: "discord",
 					label: "Discord",
 					href: "https://discord.gg/ArX2nafFz2",
 				},
 				{
-					icon: "matrix",
-					label: "Matrix",
-					href: "https://matrix.to/#/#prismlauncher:matrix.org",
-				},
-				{
-					icon: "reddit",
-					label: "Reddit",
-					href: "https://www.reddit.com/r/PrismLauncher/",
-				},
-				{
 					icon: "github",
 					label: "GitHub",
-					href: "https://github.com/PrismLauncher/PrismLauncher",
+					href: "https://github.com/Project-Tick/MeshMC",
 				},
 				{
 					icon: "email",
 					label: "E-mail",
-					href: "mailto:contact@prismlauncher.org",
+					href: "mailto:projecttick@projecttick.org",
 				},
 			],
 

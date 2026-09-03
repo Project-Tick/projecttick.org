@@ -6,18 +6,18 @@ title: Java Settings
 
 In this page you can set the global Java settings.
 
-![Java tab under Prism Launcher settings](/img/screenshots/JavaSettingsDark.png)
+![Java tab under MeshMC settings](/img/screenshots/JavaSettingsDark.png)
 
 ## Memory
 
-![Memory section of java tab under Prism Launcher settings](/img/screenshots/JavaSettingsMemoryDark.png)
+![Memory section of java tab under MeshMC settings](/img/screenshots/JavaSettingsMemoryDark.png)
 
 Java memory settings.
 NOTE: MORE RAM ALLOCATED DOESN'T MEAN BETTER PERFORMANCE! In fact, in most use cases (except you're playing big modpacks) 4GB of ram allocated should be more than enough
 
 ## Java Runtime
 
-![Java Runtime section of java tab under Prism Launcher settings](/img/screenshots/JavaSettingsJavaRuntimeDark.png)
+![Java Runtime section of java tab under MeshMC settings](/img/screenshots/JavaSettingsJavaRuntimeDark.png)
 
 This is where the settings for the Java runtime live, like the location of the runtime and any Java arguments to use.
 
@@ -35,8 +35,8 @@ For information about how to get a correct Java version, see: [Installing Java](
 
 ## Java Management
 
-![Java Management section of java tab under Prism Launcher settings](/img/screenshots/JavaSettingsManagementDark.png)
+![Java Management section of java tab under MeshMC settings](/img/screenshots/JavaSettingsManagementDark.png)
 
-This is where you can download and remove the java that were installed by Prism Launcher.
+This is where you can download and remove the java that were installed by MeshMC.
 
-![Java Download section of java tab under Prism Launcher settings](/img/screenshots/JavaSettingsDownloadDark.png)
+![Java Download section of java tab under MeshMC settings](/img/screenshots/JavaSettingsDownloadDark.png)

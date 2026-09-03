@@ -41,8 +41,8 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email "gitbot@scrumplex.net"
-          git config --local user.name "PrismAutomata"
+          git config --local user.email "projecttick@projecttick.org"
+          git config --local user.name "MMC Otomat"
           git add :/
           git commit -m "Update contributors" || true
 

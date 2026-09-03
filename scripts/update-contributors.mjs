@@ -22,7 +22,7 @@ if (GITHUB_TOKEN) headers["Authorization"] = `Bearer ${GITHUB_TOKEN}`;
 
 async function fetchTeam(slug) {
 	let response = await axios.get(
-		`https://api.github.com/orgs/PrismLauncher/teams/${slug}/members`,
+		`https://api.github.com/orgs/Project-Tick/teams/${slug}/members`,
 		{ headers },
 	);
 
@@ -47,7 +47,7 @@ async function fetchContributors() {
 	do {
 		i = i + 1;
 		response = await axios.get(
-			`https://api.github.com/repos/PrismLauncher/PrismLauncher/contributors?page=${i}&per_page=100`,
+			`https://api.github.com/repos/Project-Tick/MeshMC/contributors?page=${i}&per_page=100`,
 			{ headers },
 		);
 		for (let people in response.data) {

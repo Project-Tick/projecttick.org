@@ -2,16 +2,15 @@
 title: Data Locations
 ---
 
-Prism Launcher stores your data in your OS's standard application data folder. For the portable version, data is stored within its own directory. To find it, select **Folders** > **Launcher Root** in Prism. Below is a table containing the default locations for each OS:
+MeshMC stores your data in your OS's standard application data folder. For the portable version, data is stored within its own directory. To find it, select **Folders** > **Launcher Root** in MeshMC. Below is a table containing the default locations for each OS:
 
 | OS                         | Folder                                                          |
 | -------------------------- | --------------------------------------------------------------- |
-| Portable (Windows / Linux) | In the PrismLauncher folder                                     |
-| Windows                    | `%APPDATA%/PrismLauncher`                                       |
-| Scoop                      | `%HOMEPATH%\scoop\persist\prismlauncher`                        |
-| macOS                      | `~/Library/Application Support/PrismLauncher`                   |
-| Linux                      | `~/.local/share/PrismLauncher`                                  |
-| Flatpak                    | `~/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher` |
+| Portable (Windows / Linux) | In the MeshMC folder                                            |
+| Windows                    | `%APPDATA%/MeshMC/MeshMC`                                       |
+| macOS                      | `~/Library/Application Support/MeshMC`                   |
+| Linux                      | `~/.local/share/MeshMC`                                  |
+| Flatpak                    | `~/.var/app/org.projecttick.MeshMC/data/MeshMC` |
 
 ## Internal folder structure
 

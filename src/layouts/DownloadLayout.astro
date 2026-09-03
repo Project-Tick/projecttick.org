@@ -41,7 +41,7 @@ const images = {
 <MainLayout title={title} description={description}>
 	<Card>
 		<div
-			class="not-prose flex flex-wrap rounded-lg p-1 mb-6 bg-prism-accent-light dark:bg-prism-accent-dark"
+			class="not-prose flex flex-wrap rounded-lg p-1 mb-6 bg-meshmc-accent-light dark:bg-meshmc-accent-dark"
 		>
 			{
 				PLATFORMS.map((platformItem) => (
@@ -51,7 +51,7 @@ const images = {
 							"flex flex-col items-center justify-center gap-1",
 							"grow basis-0 px-2 py-2 text-center text-sm font-medium rounded-md",
 							platform === platformItem.key &&
-								"bg-prism-background-light dark:bg-prism-background-dark border border-black/10 dark:border-white/10",
+								"bg-meshmc-background-light dark:bg-meshmc-background-dark border border-black/10 dark:border-white/10",
 						]}
 					>
 						<Icon size="24" name={platformItem.icon} />
@@ -83,7 +83,7 @@ const images = {
 							<iframe
 								class="w-full aspect-video rounded-lg"
 								src={video}
-								title={videoAlt || "Prism Launcher video"}
+								title={videoAlt || "MeshMC video"}
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 								referrerpolicy="strict-origin-when-cross-origin"
 								allowfullscreen
@@ -94,7 +94,7 @@ const images = {
 									src={images.light}
 									formats={["avif", "webp"]}
 									alt={
-										screenshotAlt || `Prism Launcher screenshot on ${platform}`
+										screenshotAlt || `MeshMC screenshot on ${platform}`
 									}
 									class="not-prose w-full"
 									pictureAttributes={{
@@ -105,7 +105,7 @@ const images = {
 									src={images.dark}
 									formats={["avif", "webp"]}
 									alt={
-										screenshotAlt || `Prism Launcher screenshot on ${platform}`
+										screenshotAlt || `MeshMC screenshot on ${platform}`
 									}
 									class="not-prose w-full"
 									pictureAttributes={{

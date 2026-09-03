@@ -2,7 +2,7 @@
 title: Proxy Settings
 ---
 
-![Proxy tab under PrismLauncher settings](/img/screenshots/SettingsProxyDark.png)
+![Proxy tab under MeshMC settings](/img/screenshots/SettingsProxyDark.png)
 
 ### Type
 

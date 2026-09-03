@@ -12,6 +12,10 @@ export const collections = {
 			date: z.date(),
 			slug: z.string().optional(),
 			release_version: z.string().optional(),
+			// Release channel advertised in the product feed. The MeshMC
+			// updater refuses any channel it does not know, so this is
+			// deliberately a closed set.
+			channel: z.enum(["stable", "beta"]).default("stable"),
 			minimum_macos_version: z.string().optional(),
 			macos_file_extension: z.string().optional(),
 			macos_signature: z.string().optional(),

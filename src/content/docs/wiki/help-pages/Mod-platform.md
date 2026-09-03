@@ -2,7 +2,7 @@
 title: Mod Downloader
 ---
 
-![Mod downloader on mods tab under Prism Launcher settings](/img/screenshots/ModInstallDark.png)
+![Mod downloader on mods tab under MeshMC settings](/img/screenshots/ModInstallDark.png)
 
 In this page, you can download mods from Modrinth and CurseForge.
 

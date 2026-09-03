@@ -3,10 +3,10 @@ import type { APIContext } from "astro";
 const GITHUB_API = "https://api.github.com";
 const GITHUB_API_HEADERS = {
 	Accept: "application/vnd.github+json",
-	"User-Agent": "prismlauncher.org",
+	"User-Agent": "projecttick.org",
 	"X-GitHub-Api-Version": "2022-11-28",
 };
-const REPO = "PrismLauncher/PrismLauncher";
+const REPO = "Project-Tick/MeshMC";
 const WORKFLOW_FILE = "build.yml";
 
 const NIGHTLY_LINK = "https://nightly.link";

@@ -6,7 +6,7 @@ sidebar:
 
 :::note[Before proceeding]
 
-- Please ensure that you are comfortable with the mod installation process within Prism Launcher.
+- Please ensure that you are comfortable with the mod installation process within MeshMC.
 - A full guide on this can be [found here](../download-mods/).
 - Not all game versions are supported at the time of writing, including those before 1.12.2.
 - Please ensure a compatible version of Java is selected. [You can learn how to do so here](../installing-java/).
@@ -26,13 +26,13 @@ Before you continue, ensure that the correct version of the **Fabric API** mod o
 
 For Minecraft 1.19.4 or newer, we recommend [**Controlify**](https://modrinth.com/mod/controlify). It's a controller mod that has [a lot of features that aren't in MidnightControls](https://moddedmc.wiki/en/project/controlify/latest/docs/users/mod-comparison).
 
-It can be installed using Prism Launcher's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controller menu (Options -> Controls -> Controller Settings) and do the calibration. Once that's done, you're ready to use your controller!
+It can be installed using MeshMC's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controller menu (Options -> Controls -> Controller Settings) and do the calibration. Once that's done, you're ready to use your controller!
 
 ### <img src="https://cdn-raw.modrinth.com/data/bXX9h73M/icon.svg" alt="MidnightControls Fabric" width=20px style="display: inline-block"> MidnightControls (for Minecraft Versions 1.18 or newer)
 
 For Minecraft 1.18 or newer, we recommend [**MidnightControls**](https://modrinth.com/mod/midnightcontrols), an updated fork of LambdaControls.
 
-It can be installed using Prism Launcher's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controls menu. Within the in-game controls menu, you may need to change the "Mode" setting to **Controller** in order for the game to respond to input from the gamepad. If it doesn't work, you can use [**the app linked in the mod**](https://generalarcade.com/gamepadtool/) to edit the controller mappings.
+It can be installed using MeshMC's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controls menu. Within the in-game controls menu, you may need to change the "Mode" setting to **Controller** in order for the game to respond to input from the gamepad. If it doesn't work, you can use [**the app linked in the mod**](https://generalarcade.com/gamepadtool/) to edit the controller mappings.
 
 ### <img src="https://cdn-raw.modrinth.com/data/W1D3UXEc/icon.png" alt="LambdaControls Logo" width=20px style="display: inline-block"> LambdaControls (for Minecraft Versions 1.16.2 to 1.18)
 
@@ -40,7 +40,7 @@ It can be installed using Prism Launcher's mod downloader function through eithe
 
 For Minecraft 1.16.2 to 1.18, we recommend [**LambdaControls**](https://modrinth.com/mod/lambdacontrols).
 
-It can be installed using Prism Launcher's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controls menu. Within the in-game controls menu, you may need to change the "Mode" setting to **Controller** in order for the game to respond to input from the gamepad. If it doesn't work, you can use [**the app linked in the mod**](https://generalarcade.com/gamepadtool/) to edit the controller mappings.
+It can be installed using MeshMC's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controls menu. Within the in-game controls menu, you may need to change the "Mode" setting to **Controller** in order for the game to respond to input from the gamepad. If it doesn't work, you can use [**the app linked in the mod**](https://generalarcade.com/gamepadtool/) to edit the controller mappings.
 
 ## <img src="https://raw.githubusercontent.com/neoforged/websites/66732fa21e1a0d7b73df5c2f18a5345bbe13871f/assets/img/content/branding/icon.png" alt="NeoForge Logo" width=30px style="display: inline-block"> NeoForge
 
@@ -48,19 +48,19 @@ It can be installed using Prism Launcher's mod downloader function through eithe
 
 For Minecraft 1.20.3 or newer, we recommend [**Controlify**](https://modrinth.com/mod/controlify). It's a controller mod that has [a lot of features that aren't in MidnightControls or Controllable](https://moddedmc.wiki/en/project/controlify/latest/docs/users/mod-comparison).
 
-It can be installed using Prism Launcher's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controller menu (Options -> Controls -> Controller Settings) and do the calibration. Once that's done, you're ready to use your controller!
+It can be installed using MeshMC's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controller menu (Options -> Controls -> Controller Settings) and do the calibration. Once that's done, you're ready to use your controller!
 
 ### <img src="https://cdn-raw.modrinth.com/data/bXX9h73M/icon.svg" alt="MidnightControls NeoForge" width=20px style="display: inline-block"> MidnightControls (for Minecraft Versions 1.21 or newer)
 
 For Minecraft 1.21 or newer, we recommend [**MidnightControls**](https://modrinth.com/mod/midnightcontrols), an updated fork of LambdaControls.
 
-It can be installed using Prism Launcher's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controls menu. Within the in-game controls menu, you may need to change the "Mode" setting to **Controller** in order for the game to respond to input from the gamepad. If it doesn't work, you can use [**the app linked in the mod**](https://generalarcade.com/gamepadtool/) to edit the controller mappings.
+It can be installed using MeshMC's mod downloader function through either Modrinth (recommended) or CurseForge. Once installed, please launch your instance and navigate to the in-game controls menu. Within the in-game controls menu, you may need to change the "Mode" setting to **Controller** in order for the game to respond to input from the gamepad. If it doesn't work, you can use [**the app linked in the mod**](https://generalarcade.com/gamepadtool/) to edit the controller mappings.
 
 ### <img src="https://raw.githubusercontent.com/MrCrayfish/Controllable/6caef1a4ac113e5c6ac1d1abde0f0cabc3e6ad97/src/main/resources/controllable_icon.png" alt="Controllable NeoForge" width=20px style="display: inline-block"> Controllable (for Minecraft Versions 1.20.4 or newer)
 
 For Minecraft versions 1.20.4 or above, we also recommend [**Controllable**](https://www.curseforge.com/minecraft/mc-mods/controllable).
 
-Controllable can be installed using Prism Launcher's mod downloader function through CurseForge. Once installed, you may now launch your instance, and find that the mod should begin working immediately.
+Controllable can be installed using MeshMC's mod downloader function through CurseForge. Once installed, you may now launch your instance, and find that the mod should begin working immediately.
 
 ## <img src="https://avatars0.githubusercontent.com/u/1390178?s=400&v=4" alt="Forge Logo" width=30px style="display: inline-block"> Forge
 
@@ -68,4 +68,4 @@ Controllable can be installed using Prism Launcher's mod downloader function thr
 
 For Minecraft versions 1.12.2 or above, we also recommend [**Controllable**](https://www.curseforge.com/minecraft/mc-mods/controllable).
 
-Controllable can be installed using Prism Launcher's mod downloader function through CurseForge. Once installed, you may now launch your instance, and find that the mod should begin working immediately.
+Controllable can be installed using MeshMC's mod downloader function through CurseForge. Once installed, you may now launch your instance, and find that the mod should begin working immediately.

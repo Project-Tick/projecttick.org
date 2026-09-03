@@ -1,4 +1,4 @@
-# prismlauncher.org
+# projecttick.org
 
 ## Development Environment
 
@@ -15,7 +15,7 @@ Install [pnpm][pnpm-install].
 clone repository:
 
 ```sh
-git clone https://github.com/PrismLauncher/prismlauncher.org.git
+git clone https://github.com/Project-Tick/projecttick.org.git
 ```
 
 run local build:
