@@ -19,6 +19,8 @@ import modUpdateLight from "../assets/screenshots/landing/mod-update_light.png";
 import modUpdateDark from "../assets/screenshots/landing/mod-update_dark.png";
 import instanceSettingsLight from "../assets/screenshots/landing/instance-settings_light.png";
 import instanceSettingsDark from "../assets/screenshots/landing/instance-settings_dark.png";
+import PluginManagementLight from "../assets/screenshots/landing/plugin-management_light.png";
+import PluginManagementDark from "../assets/screenshots/landing/plugin-management_dark.png";
 import themesDark from "../assets/screenshots/landing/themes_dark.png";
 ---
 
@@ -29,6 +31,69 @@ import themesDark from "../assets/screenshots/landing/themes_dark.png";
 	<HeroSection />
 	<ProseCard>
 		<h2>Features</h2>
+
+		<h3>Plugin Management</h3>
+		<p>
+			MeshMC allows you to write plugins directly with the SDK. It supports
+			adding virtually everything, from authentication mechanisms to instance
+			management.
+		</p>
+		<Picture
+			src={PluginManagementLight}
+			formats={["avif", "webp"]}
+			alt="MeshMC screenshot showing the instance management user-interface"
+			class="mx-auto not-prose"
+			pictureAttributes={{
+				class: "dark:hidden",
+			}}
+		/>
+		<Picture
+			src={PluginManagementDark}
+			formats={["avif", "webp"]}
+			alt="MeshMC screenshot showing the instance management user-interface"
+			class="mx-auto not-prose"
+			pictureAttributes={{
+				class: "hidden dark:block",
+			}}
+		/>
+
+		<h3>Instance Management</h3>
+		<p>
+			MeshMC allows you to create and manage multiple instances of
+			Minecraft, each with its own settings, mods, and configurations. This
+			means you can easily switch between different setups without any issues.
+		</p>
+		<Picture
+			src={instanceSettingsLight}
+			formats={["avif", "webp"]}
+			alt="MeshMC screenshot showing the instance management user-interface"
+			class="mx-auto not-prose"
+			pictureAttributes={{
+				class: "dark:hidden",
+			}}
+		/>
+		<Picture
+			src={instanceSettingsDark}
+			formats={["avif", "webp"]}
+			alt="MeshMC screenshot showing the instance management user-interface"
+			class="mx-auto not-prose"
+			pictureAttributes={{
+				class: "hidden dark:block",
+			}}
+		/>
+
+		<h3>Lightweight and Customizable</h3>
+		<p>
+			You don't need an embedded web browser as a game launcher. MeshMC
+			is built with the Qt toolkit, requiring very few system resources to run.
+			It also lets you customize the menu and supports custom themes.
+		</p>
+		<Picture
+			src={themesDark}
+			formats={["avif", "webp"]}
+			alt="MeshMC screenshot showing a themed user-interface"
+			class="mx-auto not-prose"
+		/>
 
 		<h3>Modpack Management</h3>
 		<p>
@@ -112,43 +177,13 @@ import themesDark from "../assets/screenshots/landing/themes_dark.png";
 			/>
 		</div>
 
-		<h3>Instance Management</h3>
+		<h3>Extensive Support</h3>
 		<p>
-			MeshMC allows you to create and manage multiple instances of
-			Minecraft, each with its own settings, mods, and configurations. This
-			means you can easily switch between different setups without any issues.
+			MeshMC is a launcher written in Qt. It supports Qt5 and Qt6, but we recommend
+			using the version compiled with Qt6. While some launchers only support one
+			framework, we aim to be more predictable and less prone to breaking by
+			supporting more.
 		</p>
-		<Picture
-			src={instanceSettingsLight}
-			formats={["avif", "webp"]}
-			alt="MeshMC screenshot showing the instance management user-interface"
-			class="mx-auto not-prose"
-			pictureAttributes={{
-				class: "dark:hidden",
-			}}
-		/>
-		<Picture
-			src={instanceSettingsDark}
-			formats={["avif", "webp"]}
-			alt="MeshMC screenshot showing the instance management user-interface"
-			class="mx-auto not-prose"
-			pictureAttributes={{
-				class: "hidden dark:block",
-			}}
-		/>
-
-		<h3>Lightweight and Customizable</h3>
-		<p>
-			You don't need an embedded web browser as a game launcher. MeshMC
-			is built with the Qt toolkit, requiring very few system resources to run.
-			It also lets you customize the menu and supports custom themes.
-		</p>
-		<Picture
-			src={themesDark}
-			formats={["avif", "webp"]}
-			alt="MeshMC screenshot showing a themed user-interface"
-			class="mx-auto not-prose"
-		/>
 
 		<h2>I want that!</h2>
 		<p>

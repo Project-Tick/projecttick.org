@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note[Automatically installing Java (recommended)]
-In MeshMC 9.0+, you can let the launcher handle Java automatically on Windows, macOS and Linux (not available in all packages) by enabling "Autodetect Java version" and "Auto-download Mojang Java" in:
+In MeshMC 7.0+, you can let the launcher handle Java automatically on Windows, macOS and Linux (not available in all packages) by enabling "Autodetect Java version" and "Auto-download Mojang Java" in:
 
 > Settings (top toolbar) > Java
 
