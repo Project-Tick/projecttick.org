@@ -31,7 +31,7 @@
 	"devDependencies": {
 		"@astrojs/cloudflare": "12.6.13",
 		"@astrojs/starlight": "0.37.7",
-		"@iconify-json/lucide": "1.2.99",
+		"@iconify-json/lucide": "1.2.131",
 		"@iconify-json/simple-icons": "1.2.75",
 		"prettier": "3.8.1",
 		"prettier-plugin-astro": "0.14.1",
