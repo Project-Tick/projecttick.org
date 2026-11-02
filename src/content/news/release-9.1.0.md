@@ -17,8 +17,8 @@ tags:
 
 ## Changed
 
-Updater has been completely revamped. [BACKPORT FROM 10.0.0]
+* Updater has been completely revamped. [BACKPORT FROM 10.0.0]
 
 ## Fixed
 
-Manifest.txt generation has been fixed. [BACKPORT FROM 10.0.0]
+* Manifest.txt generation has been fixed. [BACKPORT FROM 10.0.0]
