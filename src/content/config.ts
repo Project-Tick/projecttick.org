@@ -17,8 +17,10 @@ export const collections = {
 			// deliberately a closed set.
 			channel: z.enum(["stable", "beta"]).default("stable"),
 			minimum_macos_version: z.string().optional(),
+			legacy_minimum_macos_version: z.string().optional(),
 			macos_file_extension: z.string().optional(),
 			macos_signature: z.string().optional(),
+			legacy_macos_signature: z.string().optional(),
 			tags: z.array(z.string()).default([]),
 			author: z.string().optional(),
 			draft: z.boolean().default(false),

@@ -45,7 +45,7 @@ After downloading the AppImage, open your file manager and make it [executable](
 on x86-64:
 
 ```bash
-curl -LO https://github.com/Project-Tick/MeshMC/releases/download/10.0.0/MeshMC-Linux-x86_64.AppImage
+curl -LO https://github.com/Project-Tick/MeshMC/releases/download/v11.0.2/MeshMC-Qt6-Linux-x86_64.AppImage
 chmod +x ./MeshMC-Linux-x86_64.AppImage
 ./MeshMC-Linux-x86_64.AppImage
 ```
@@ -53,7 +53,7 @@ chmod +x ./MeshMC-Linux-x86_64.AppImage
 on ARM64:
 
 ```bash
-curl -LO https://github.com/Project-Tick/MeshMC/releases/download/10.0.0/MeshMC-Linux-aarch64.AppImage
+curl -LO https://github.com/Project-Tick/MeshMC/releases/download/v11.0.2/MeshMC-Qt6-Linux-aarch64.AppImage
 chmod +x ./MeshMC-Linux-aarch64.AppImage
 ./MeshMC-Linux-aarch64.AppImage
 ```

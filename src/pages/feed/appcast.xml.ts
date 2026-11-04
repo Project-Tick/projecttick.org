@@ -25,11 +25,16 @@ export const GET: APIRoute = async ({ site = DEFAULT_URL }) => {
 				minimum_macos_version,
 				macos_file_extension,
 				macos_signature,
+				legacy_macos_signature,
 			} = data;
 
 			const link = new URL(`/news/${data.slug || slug}`, site).toString();
 			const minMac = minimum_macos_version
 				? `\n    <sparkle:minimumSystemVersion>${minimum_macos_version}</sparkle:minimumSystemVersion>`
+				: "";
+			const legacyEnclosure = legacy_macos_signature
+				? `
+    			<enclosure sparkle:os="macos" url="https://github.com/Project-Tick/MeshMC/releases/download/${release_version}/MeshMC-Qt6-Legacy-macOS-${release_version}.${macos_file_extension || "tar.gz"}" length="0" type="application/octet-stream" sparkle:edSignature="${legacy_macos_signature}"/>`
 				: "";
 
 			// TODO: use Astro's .render() in the future
@@ -44,7 +49,7 @@ export const GET: APIRoute = async ({ site = DEFAULT_URL }) => {
     <sparkle:version>${release_version}</sparkle:version>
     <description><![CDATA[${content}]]></description>
     <pubDate>${data.date.toISOString()}</pubDate>${minMac}
-    <enclosure sparkle:os="macos" url="https://github.com/Project-Tick/MeshMC/releases/download/${release_version}/MeshMC-macOS-${release_version}.${macos_file_extension || "tar.gz"}" length="0" type="application/octet-stream" sparkle:edSignature="${macos_signature}"/>
+    <enclosure sparkle:os="macos" url="https://github.com/Project-Tick/MeshMC/releases/download/${release_version}/MeshMC-Qt6-macOS-${release_version}.${macos_file_extension || "tar.gz"}" length="0" type="application/octet-stream" sparkle:edSignature="${macos_signature}"/>${legacyEnclosure}
   </item>`;
 		}),
 	);

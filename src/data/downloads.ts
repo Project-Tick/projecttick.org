@@ -1,4 +1,4 @@
-const VERSION = "10.0.0";
+const VERSION = "11.0.2";
 
 export const PLATFORMS = [
 	{
@@ -34,14 +34,14 @@ export const DOWNLOADS = {
 			downloads: [
 				{
 					title: "Installer (.exe)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Windows-MSVC-Setup-v${VERSION}.exe`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MSVC-Setup-v${VERSION}.exe`,
 					type: "primary" as const,
 					icon: "simple-icons:windows",
 					secondaryIcon: "lucide:download",
 				},
 				{
 					title: "Portable (.zip)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Windows-MinGW-w64-Portable-v${VERSION}.zip`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MinGW-w64-Portable-v${VERSION}.zip`,
 					type: "secondary" as const,
 					icon: "simple-icons:windows",
 					secondaryIcon: "lucide:download",
@@ -53,14 +53,14 @@ export const DOWNLOADS = {
 			downloads: [
 				{
 					title: "Installer (.exe)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Windows-MSVC-arm64-Setup-v${VERSION}.exe`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MSVC-arm64-Setup-v${VERSION}.exe`,
 					type: "secondary" as const,
 					icon: "simple-icons:windows",
 					secondaryIcon: "lucide:download",
 				},
 				{
 					title: "Portable (.zip)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Windows-MSVC-arm64-Portable-v${VERSION}.zip`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MSVC-arm64-Portable-v${VERSION}.zip`,
 					type: "secondary" as const,
 					icon: "simple-icons:windows",
 					secondaryIcon: "lucide:download",
@@ -82,14 +82,14 @@ export const DOWNLOADS = {
 				},
 				{
 					title: "AppImage (.appimage)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Linux-x86_64.AppImage`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-x86_64.AppImage`,
 					type: "secondary" as const,
 					icon: "simple-icons:linux",
 					secondaryIcon: "lucide:download",
 				},
 				{
 					title: "Portable (tar.gz)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Linux-Qt6-Portable-v${VERSION}.tar.gz`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-Portable-v${VERSION}.tar.gz`,
 					type: "secondary" as const,
 					icon: "simple-icons:linux",
 					secondaryIcon: "lucide:download",
@@ -108,14 +108,14 @@ export const DOWNLOADS = {
 				},
 				{
 					title: "AppImage (.appimage)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Linux-aarch64.AppImage`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-aarch64.AppImage`,
 					type: "secondary" as const,
 					icon: "simple-icons:linux",
 					secondaryIcon: "lucide:download",
 				},
 				{
 					title: "Portable (tar.gz)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Linux-aarch64-Qt6-Portable-v${VERSION}.tar.gz`,
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-aarch64-Portable-v${VERSION}.tar.gz`,
 					type: "secondary" as const,
 					icon: "simple-icons:linux",
 					secondaryIcon: "lucide:download",
@@ -129,8 +129,8 @@ export const DOWNLOADS = {
 			title: "Monterey or later",
 			downloads: [
 				{
-					title: "Universal (.zip)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-macOS-v${VERSION}.zip`,
+					title: "Universal (.dmg)",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-macOS-v${VERSION}.dmg`,
 					type: "primary" as const,
 					icon: "simple-icons:apple",
 					secondaryIcon: "lucide:download",
