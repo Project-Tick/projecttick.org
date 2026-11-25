@@ -1,0 +1,198 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Card from "../../components/ui/Card.astro";
+
+const archive = "https://github.com/Project-Tick/MeshMC-Archive/releases";
+---
+
+<MainLayout
+	title="Build archive"
+	description="Browse and download MeshMC builds."
+>
+	<Card>
+		<h1 class="heading-1 mb-4">Build archive</h1>
+		<p class="mb-4"><a class="underline" href={archive}>View on GitHub</a></p>
+		<div class="overflow-x-auto">
+			<table class="w-full border-collapse text-left text-sm">
+				<thead class="border-b border-black/15 dark:border-white/20">
+					<tr>
+						<th class="p-2" scope="col">Build</th>
+						<th class="p-2" scope="col">Channel</th>
+						<th class="p-2" scope="col">Commit</th>
+						<th class="p-2" scope="col">Published (UTC)</th>
+						<th class="p-2" scope="col">Downloads</th>
+					</tr>
+				</thead>
+				<tbody id="build-rows"></tbody>
+			</table>
+		</div>
+		<p id="build-status" class="mt-4 text-sm" role="status"></p>
+		<nav
+			aria-label="Build archive pages"
+			class="mt-4 flex flex-wrap items-center gap-3"
+		>
+			<button id="build-prev" type="button" disabled>Previous</button>
+			<span id="build-page" class="text-sm"></span>
+			<button id="build-next" type="button" disabled>Next</button>
+			<button id="build-retry" type="button" hidden>Retry</button>
+		</nav>
+		<noscript
+			><p>
+				Use the GitHub link above to browse builds without JavaScript.
+			</p></noscript
+		>
+	</Card>
+</MainLayout>
+
+<style>
+	button {
+		padding: 0.35rem 0.75rem;
+		border: 1px solid currentColor;
+		border-radius: 0.375rem;
+	}
+	button:disabled {
+		opacity: 0.4;
+	}
+	button:not(:disabled) {
+		cursor: pointer;
+	}
+</style>
+
+<script>
+	const repository = "https://github.com/Project-Tick/MeshMC";
+	const archive = `${repository}-Archive/releases`;
+	const endpoint =
+		"https://api.github.com/repos/Project-Tick/MeshMC-Archive/releases";
+	const platforms = [
+		["win32-5.15.2-Setup.exe", "win32-5.15.2-installer"],
+		["win32-5.15.2.zip", "win32-5.15.2"],
+		["win32.zip", "win32"],
+		["osx64-5.15.2.tar.gz", "osx64-5.15.2"],
+		["lin64.tar.gz", "lin64"],
+		["lin32.tar.gz", "lin32"],
+	] as const;
+
+	interface Release {
+		tag_name: string;
+		body: string | null;
+		published_at: string | null;
+		assets: Array<{ name: string; state: string }>;
+	}
+
+	const rows = document.querySelector<HTMLTableSectionElement>("#build-rows")!;
+	const status = document.querySelector("#build-status")!;
+	const pageLabel = document.querySelector("#build-page")!;
+	const previous = document.querySelector<HTMLButtonElement>("#build-prev")!;
+	const next = document.querySelector<HTMLButtonElement>("#build-next")!;
+	const retry = document.querySelector<HTMLButtonElement>("#build-retry")!;
+	const pages = new Map<number, { releases: Release[]; hasNext: boolean }>();
+	let currentPage = 1;
+	let request = 0;
+
+	function link(text: string, href: string) {
+		const anchor = document.createElement("a");
+		anchor.textContent = text;
+		anchor.href = href;
+		anchor.className = "underline";
+		return anchor;
+	}
+
+	function show(releases: Release[]) {
+		rows.replaceChildren();
+		for (const release of releases) {
+			const tag = release.tag_name;
+			if (!/^build-[1-9]\d*$/.test(tag)) continue;
+
+			const row = rows.insertRow();
+			row.className = "border-b border-black/10 dark:border-white/10";
+			const body = release.body ?? "";
+			const commit = /^Source commit: ([0-9a-f]{40})$/m.exec(body)?.[1];
+			const channel = /^Channel: ([\w./-]+)$/m.exec(body)?.[1];
+			const cells = Array.from({ length: 5 }, () => {
+				const cell = row.insertCell();
+				cell.className = "p-2 align-top";
+				return cell;
+			});
+			const [buildCell, channelCell, commitCell, dateCell, downloadsCell] =
+				cells;
+			buildCell.append(link(tag, `${archive}/tag/${tag}`));
+			channelCell.textContent = channel ?? "—";
+			if (commit)
+				commitCell.append(
+					link(commit.slice(0, 10), `${repository}/commit/${commit}`),
+				);
+			else commitCell.textContent = "—";
+			dateCell.textContent =
+				release.published_at?.slice(0, 16).replace("T", " ") ?? "—";
+			dateCell.classList.add("whitespace-nowrap");
+
+			const available = new Set(
+				release.assets
+					.filter(({ state }) => state === "uploaded")
+					.map(({ name }) => name),
+			);
+			const links = document.createElement("div");
+			links.className = "flex min-w-52 flex-wrap gap-x-3 gap-y-1";
+			for (const [suffix, label] of platforms) {
+				const name = `MeshMC-${tag}-${suffix}`;
+				if (available.has(name))
+					links.append(link(label, `${archive}/download/${tag}/${name}`));
+			}
+			if (links.childElementCount) downloadsCell.append(links);
+			else downloadsCell.textContent = "—";
+		}
+	}
+
+	function pageFromUrl() {
+		const page = Number(new URLSearchParams(location.search).get("page"));
+		return Number.isSafeInteger(page) && page > 0 ? page : 1;
+	}
+
+	async function load(page: number) {
+		const activeRequest = ++request;
+		currentPage = page;
+		pageLabel.textContent = `Page ${page}`;
+		rows.replaceChildren();
+		status.textContent = "Loading builds…";
+		previous.disabled = true;
+		next.disabled = true;
+		retry.hidden = true;
+		try {
+			let data = pages.get(page);
+			if (!data) {
+				const response = await fetch(`${endpoint}?per_page=50&page=${page}`);
+				if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+				const releases: Release[] = await response.json();
+				const hasNext = /rel="next"/.test(response.headers.get("Link") ?? "");
+				data = { releases, hasNext };
+				pages.set(page, data);
+			}
+			if (activeRequest !== request) return;
+			show(data.releases);
+			status.textContent = rows.rows.length
+				? ""
+				: "No builds are available on this page.";
+			next.disabled = !data.hasNext;
+		} catch {
+			if (activeRequest !== request) return;
+			status.textContent =
+				"Could not load builds from GitHub. Try again or view the releases directly.";
+			retry.hidden = false;
+		}
+		previous.disabled = page === 1;
+	}
+
+	function navigate(page: number) {
+		const url = new URL(location.href);
+		if (page === 1) url.searchParams.delete("page");
+		else url.searchParams.set("page", String(page));
+		history.pushState(null, "", url);
+		void load(page);
+	}
+
+	previous.addEventListener("click", () => navigate(currentPage - 1));
+	next.addEventListener("click", () => navigate(currentPage + 1));
+	retry.addEventListener("click", () => void load(currentPage));
+	window.addEventListener("popstate", () => void load(pageFromUrl()));
+	void load(pageFromUrl());
+</script>

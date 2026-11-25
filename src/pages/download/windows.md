@@ -18,8 +18,11 @@ MeshMC is available on Chocolatey. You can install it using the following comman
 choco install meshmc
 ```
 
-### MinGW
+### Scoop Package
 
-These builds are built with MinGW and do not require the Visual C++ Redistributable to be installed on your system. They require Windows 10/11 64bit. **These builds are less tested than the MSVC builds.**
+MeshMC is available on Scoop. You can install it using the following command:
 
-- [Installer (x86-64) (.exe)](https://github.com/Project-Tick/MeshMC/releases/download/v11.0.2/MeshMC-Qt6-Windows-MinGW-w64-Setup-v11.0.2.exe)
+```cmd
+scoop bucket add games
+scoop install meshmc
+```

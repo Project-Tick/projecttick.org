@@ -1,11 +1,9 @@
-const VERSION = "11.0.2";
-
 export const PLATFORMS = [
 	{
 		name: "Windows",
 		path: "/download/windows",
 		key: "windows",
-		icon: "simple-icons:windows",
+		icon: "simple-icons:windows10",
 	},
 	{
 		name: "macOS",
@@ -14,141 +12,108 @@ export const PLATFORMS = [
 		icon: "simple-icons:apple",
 	},
 	{
-		name: "Steam Deck",
-		path: "/download/steam-deck",
-		key: "steam-deck",
-		icon: "simple-icons:steam",
-	},
-	{
 		name: "Linux",
 		path: "/download/linux",
 		key: "linux",
 		icon: "simple-icons:linux",
+	},
+	{
+		name: "All Builds",
+		path: "/download/builds",
+		key: "builds",
+		icon: "lucide:package",
 	},
 ] as const;
 
 export const DOWNLOADS = {
 	windows: [
 		{
-			title: "x86-64",
+			title: "Stable WIN32",
 			downloads: [
 				{
-					title: "Installer (.exe)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MSVC-Setup-v${VERSION}.exe`,
+					title: "Installer - Windows 7 and later",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-win32-5.15.2-Setup.exe`,
 					type: "primary" as const,
-					icon: "simple-icons:windows",
+					icon: "simple-icons:windows10",
 					secondaryIcon: "lucide:download",
 				},
 				{
-					title: "Portable (.zip)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MinGW-w64-Portable-v${VERSION}.zip`,
+					title: "Archive - Windows 7 and later",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-win32-5.15.2.zip`,
 					type: "secondary" as const,
-					icon: "simple-icons:windows",
+					icon: "simple-icons:windows10",
 					secondaryIcon: "lucide:download",
 				},
-			],
-		},
-		{
-			title: "ARM64",
-			downloads: [
+
 				{
-					title: "Installer (.exe)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MSVC-arm64-Setup-v${VERSION}.exe`,
+					title: "Archive - Windows XP and Vista",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-win32-5.15.2.zip`,
 					type: "secondary" as const,
-					icon: "simple-icons:windows",
-					secondaryIcon: "lucide:download",
-				},
-				{
-					title: "Portable (.zip)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Windows-MSVC-arm64-Portable-v${VERSION}.zip`,
-					type: "secondary" as const,
-					icon: "simple-icons:windows",
+					icon: "simple-icons:windowsxp",
 					secondaryIcon: "lucide:download",
 				},
 			],
 		},
 	],
-
 	linux: [
 		{
-			title: "x86-64",
+			title: "Packages",
 			downloads: [
 				{
-					title: "Flathub",
+					title: "Flatpak Wrapper Package",
 					href: "https://flathub.org/apps/details/org.projecttick.MeshMC",
 					type: "primary" as const,
 					icon: "simple-icons:flathub",
 					secondaryIcon: "lucide:link",
 				},
 				{
-					title: "AppImage (.appimage)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-x86_64.AppImage`,
+					title: "Debian Wrapper Package",
+					href: `https://github.com/Project-Tick/Packaging/releases/download/2.0/meshmc_2.0-1.deb`,
 					type: "secondary" as const,
-					icon: "simple-icons:linux",
+					icon: "simple-icons:debian",
 					secondaryIcon: "lucide:download",
 				},
 				{
-					title: "Portable (tar.gz)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-Portable-v${VERSION}.tar.gz`,
+					title: "Fedora/RHEL Wrapper Package",
+					href: `https://github.com/Project-Tick/Packaging/releases/download/2.0/MeshMC-2.0-1.noarch.rpm`,
 					type: "secondary" as const,
-					icon: "simple-icons:linux",
-					secondaryIcon: "lucide:download",
-				},
-			],
-		},
-		{
-			title: "ARM64",
-			downloads: [
-				{
-					title: "Flathub",
-					href: "https://flathub.org/apps/details/org.projecttick.MeshMC",
-					type: "primary" as const,
-					icon: "simple-icons:flathub",
-					secondaryIcon: "lucide:link",
-				},
-				{
-					title: "AppImage (.appimage)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-aarch64.AppImage`,
-					type: "secondary" as const,
-					icon: "simple-icons:linux",
+					icon: "simple-icons:fedora",
 					secondaryIcon: "lucide:download",
 				},
 				{
-					title: "Portable (tar.gz)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-Linux-aarch64-Portable-v${VERSION}.tar.gz`,
+					title: "Arch Linux (AUR) Wrapper Package",
+					href: `https://aur.archlinux.org/packages/meshmc`,
 					type: "secondary" as const,
-					icon: "simple-icons:linux",
+					icon: "simple-icons:archlinux",
+					secondaryIcon: "lucide:download",
+				},
+				{
+					title: "Binary Tarball (32-bit)",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-lin32.tar.gz`,
+					type: "secondary" as const,
+					icon: "lucide:package",
+					secondaryIcon: "lucide:download",
+				},
+				{
+					title: "Binary Tarball (64-bit)",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-lin64.tar.gz`,
+					type: "secondary" as const,
+					icon: "lucide:package",
 					secondaryIcon: "lucide:download",
 				},
 			],
 		},
 	],
-
 	macos: [
 		{
-			title: "Monterey or later",
+			title: "macOS High Sierra or later",
 			downloads: [
 				{
-					title: "Universal (.dmg)",
-					href: `https://github.com/Project-Tick/MeshMC/releases/download/v${VERSION}/MeshMC-Qt6-macOS-v${VERSION}.dmg`,
+					title: "64-bit Archive",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-osx64-5.15.2.tar.gz`,
 					type: "primary" as const,
 					icon: "simple-icons:apple",
 					secondaryIcon: "lucide:download",
-				},
-			],
-		},
-	],
-
-	"steam-deck": [
-		{
-			title: "Steam Deck",
-			downloads: [
-				{
-					title: "Flathub",
-					href: "https://flathub.org/apps/details/org.projecttick.MeshMC",
-					type: "primary" as const,
-					icon: "simple-icons:flathub",
-					secondaryIcon: "lucide:link",
 				},
 			],
 		},
