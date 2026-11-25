@@ -44,7 +44,13 @@ export const DOWNLOADS = {
 					icon: "simple-icons:windows10",
 					secondaryIcon: "lucide:download",
 				},
-
+				{
+					title: "Installer - Windows XP and Vista",
+					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-win32-Setup.exe`,
+					type: "secondary" as const,
+					icon: "simple-icons:windowsxp",
+					secondaryIcon: "lucide:download",
+				},
 				{
 					title: "Archive - Windows XP and Vista",
 					href: `https://github.com/Project-Tick/MeshMC/releases/download/stable/MeshMC-stable-win32-5.15.2.zip`,
