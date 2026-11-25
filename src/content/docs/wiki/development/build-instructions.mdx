@@ -5,651 +5,151 @@ description: "A guide on building the MeshMC"
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 
-## CMake Options
-
-These options can be set during configuration with `-D<OPTION>=<VALUE>`:
-
-| Option                         | Default  | Description                                |
-|--------------------------------|----------|--------------------------------------------|
-| `ENABLE_LTO`                   | `OFF`\*  | Enable Link Time Optimization              |
-| `MeshMC_QT_VERSION_MAJOR`     | `6`      | Major Qt version to build against: `6` (>= 6.4) or `5` (>= 5.15). Use a separate build directory per value — see [Choosing the Qt version](#choosing-the-qt-version) |
-| `MeshMC_BUILD_PLATFORM`       | `""`     | Platform identifier string (display only)  |
-| `MeshMC_BUILD_ARTIFACT`       | `""`     | Legacy substring used to match a feed asset when structured attributes are unavailable |
-| `MeshMC_BUILD_PLATFORM_ID`    | `""`     | Updater asset platform id: `linux` / `windows` / `macos` |
-| `MeshMC_BUILD_ARCH`           | `""`     | Updater asset arch: `x86_64` / `aarch64`   |
-| `MeshMC_BUILD_PORTABLE`       | `""`     | Updater asset portable flag: `true` / `false` |
-| `MeshMC_BUILD_KIND`           | `""`     | Updater asset kind: `archive` / `appimage` / `installer` |
-| `MeshMC_META_URL`             | (set)    | URL for meta server                        |
-| `MeshMC_NEWS_RSS_URL`         | (set)    | URL for news RSS feed                      |
-| `MeshMC_UPDATER_BASE`         | `""`     | Legacy GoUpdate base URL (unused)          |
-| `MeshMC_UPDATER_FEED_URL`     | (set)    | Authoritative product feed URL             |
-| `MeshMC_UPDATER_LATEST_JSON_URL` | (set) | Cross-check mirror URL (empty disables it) |
-| `MeshMC_NOTIFICATION_URL`     | (set)    | URL for notifications                      |
-| `MeshMC_PASTE_EE_API_KEY`     | (set)    | paste.ee API key                           |
-| `MeshMC_IMGUR_CLIENT_ID`      | (set)    | Imgur API client ID                        |
-| `MeshMC_CURSEFORGE_API_KEY`   | (set)    | CurseForge API key                         |
-| `BUILD_TESTING`                | `ON`     | Build unit tests                           |
-
-> \* `ENABLE_LTO` defaults to `OFF` in the CMakeLists.txt, but presets set it
-> to `ON`.
-
-### Example
-
-```bash
-cmake --preset linux \
-    -DENABLE_LTO=OFF \
-    -DBUILD_TESTING=OFF \
-    -DMeshMC_BUILD_PLATFORM="linux-x86_64"
-```
-
 ## Compiling manually
 
-<Tabs syncKey="qtVersion">
-<TabItem label="Qt 6">
-### Prerequisites
-- A recent-ish operating system release
-  - Windows 10 (1809 or later. Older versions may be supported, but aren't tested)
-  - macOS >= 12
-  - Ubuntu >= 22.04 (or equivalent)
-- A C++ compiler supporting at least C++17.
-  - This includes GCC >= 8, Clang >= 5, and MSVC >= 19.15
-- Java JDK \<= 17
-- cmake >= 3.24
-- ninja
-- extra-cmake-modules
-- Qt 6.4 or later, with the following addons/plugins:
-  - Qt NetworkAuth
-  - Qt Image Formats
-  - Qt Svg
-- cmark
-- `glxinfo` (required at runtime, only on Linux)
-- libarchive
-- libGL headers (only on Linux)
-- libqrencode
-- pciutils (required at runtime, only on Linux)
-- scdoc (optional at build time, used to generate manpages)
-- tomlplusplus
-- vulkan-headers
-- zlib
-
 <Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
+<TabItem label="Windows">
 
-:::note
-`winget` is installed by default on newer versions of Windows 11
-:::
+## Dependencies
+* A recent-ish operating system release
+  - Windows 7 (32-bit) or later
+* [Qt 5.6+ Development tools](http://qt-project.org/downloads) -- Qt Online Installer for Windows
+    - http://download.qt.io/new_archive/qt/5.6/5.6.0/qt-opensource-windows-x86-mingw492-5.6.0.exe
+    - Download the MinGW version (MSVC version does not work).
+* [OpenSSL](https://github.com/IndySockets/OpenSSL-Binaries/tree/master/Archive/) -- Win32 OpenSSL, version 1.0.2g (from 2016)
+    - https://github.com/IndySockets/OpenSSL-Binaries/raw/master/Archive/openssl-1.0.2g-i386-win32.zip
+    - the usual OpenSSL for Windows (http://slproweb.com/products/Win32OpenSSL.html) only provides the newest version of OpenSSL, and we need the 1.0.2g version
+    - **Download the 32-bit version, not 64-bit.**
+    - Microsoft Visual C++ 2008 Redist is required for this, there's a link on the OpenSSL download page above next to the main download.
+    - We use a custom build of OpenSSL that doesn't have this dependency. For normal development, the custom build is not necessary though.
+* [zlib 1.2+](http://gnuwin32.sourceforge.net/packages/zlib.htm) - the Setup is fine
+* [Java JDK 8](https://adoptium.net/releases.html?variant=openjdk8) - Use the MSI installer.
+* [CMake](http://www.cmake.org/cmake/resources/software.html) -- Windows (Win32 Installer)
 
-You should first install [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), a package manager for Windows.
+Ensure that OpenSSL, zlib, Java and CMake are on `PATH`.
 
-Once `winget` is available, install the MSVC toolchain with:
+## Getting set up
 
-```console
-winget install --source winget --exact --id Microsoft.VisualStudio.2022.BuildTools --override '--add Microsoft.VisualStudio.Workload.VCTools;includeRecommended'
-```
+### Installing Qt
+1. Run the Qt installer
+2. Choose a place to install Qt (C:\Qt is the default),
+3. Choose the components you want to install
+    - You need Qt 5.6 (32 bit) ticked,
+    - You need Tools/Qt Creator ticked,
+    - Other components are selected by default, you can untick them if you don't need them.
+4. Accept the license agreements,
+5. Double check the install details and then click "Install"
+    - Installation can take a very long time, go grab a cup of tea or something and let it work.
 
-Install JDK 17 with:
+### Installing OpenSSL
+1. Download .zip file from the link above.
+2. Unzip and add the directory to PATH, so CMake can find it.
 
-```console
-winget install --source winget --exact --id EclipseAdoptium.Temurin.17.JDK
-```
+### Installing CMake
+1. Run the CMake installer,
+2. It's easiest if you choose to add CMake to the PATH for all users,
+    - If you don't choose to do this, remember where you installed CMake.
 
-We will also be using Git:
-
-```console
-winget install --source winget --exact --id Git.Git
-```
-
-Qt can then be installed with [`aqt`](https://aqtinstall.readthedocs.io/en/latest/):
-
-Qt6:
-```console
-winget install --source winget --exact --id miurahr.aqtinstall
-aqt install-qt windows desktop 6.10.2 win64_msvc2022_64 -m qtimageformats qtnetworkauth
-```
-
-or Qt Online Installer.
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-[MSYS2](https://msys2.org) may be installed with [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), or by following the setup guide [here](https://www.msys2.org/#installation):
-
-```console
-winget install --exact --id MSYS2.MSYS2 --source winget
-```
-
-Install JDK 17 with:
-
-```console
-winget install --source winget --exact --id EclipseAdoptium.Temurin.17.JDK
-```
-
-We **require** the CLANG(ARM)64 [environment](https://www.msys2.org/docs/environments/). After starting the environment, you may run the following to install all dependencies:
-
-```console
-pacman -Syu pactoys git
-pacboy -S \
-  toolchain:p \
-	cmake:p ninja:p \
-	extra-cmake-modules:p \
-	qt6-base:p qt6-imageformats:p qt6-networkauth:p qt6-svg:p \
-	cmark:p \
-	libarchive:p \
-	qrencode:p \
-	tomlplusplus:p \
-	vulkan-headers:p \
-	zlib:p
-```
+### Compile from command line on Windows
+1. If you installed Qt with the web installer, there should be a shortcut called `Qt 5.4 for Desktop (MinGW 4.9 32-bit)` in the Start menu on Windows 7 and 10. Best way to find it is to search for it. Do note you cannot just use cmd.exe, you have to use the shortcut, otherwise the proper MinGW software will not be on the PATH.
+2. Once that is open, change into your user directory, and clone MeshMC by doing `git clone --recursive https://github.com/Project-Tick/MeshMC.git`, and change directory to the folder you cloned to.
+3. Make a build directory, and change directory to the directory and do `cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=C:\Path\that\makes\sense\for\you`. By default, it will install to C:\Program Files (x86), which you might not want, if you want a local installation. If you want to install it to that directory, make sure to run the command window as administrator.
+3. Do `mingw32-make -jX`, where X is the number of cores your CPU has plus one.
+4. Now to wait for it to compile. This could take some time. Hopefully it compiles properly.
+5. Run the command `mingw32-make install`, and it should install MeshMC, to whatever the `-DCMAKE_INSTALL_PREFIX` was.
+6. In most cases, whenever compiling, the OpenSSL dll's aren't put into the directory to where MeshMC installs, meaning you cannot log in. The best way to fix this is just to do `copy C:\OpenSSL-Win32\*.dll C:\Where\you\installed\MeshMC\to`. This should copy the required OpenSSL dll's to log in.
 
 </TabItem>
 <TabItem label="macOS">
 
-The XCode toolchain can be installed with:
+### Install prerequisites:
+- A recent-ish operating system release
+  - macOS >= 10.8
+- Install XCode Command Line tools
+- Install the official build of CMake (https://cmake.org/download/)
+- Install JDK 8 (https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+- Get Qt 5.6 and install it (https://download.qt.io/new_archive/qt/5.6/5.6.3/)
 
-```
+### XCode Command Line tools
+
+If you don't have XCode CommandLine tools installed, you can install them by using this command in the Terminal App
+
+```bash
 xcode-select --install
 ```
 
-Qt and other dependencies can then be installed with the following [Homebrew](https://brew.sh/) command:
+### Build
 
-```console
-brew install cmake ninja extra-cmake-modules openjdk@17 vcpkg qt
-git clone https://github.com/Microsoft/vcpkg ~/vcpkg
-export VCPKG_ROOT="$HOME/vcpkg"
+Pick an installation path - this is where the final `.app` will be constructed when you run `make install`. Supply it as the `CMAKE_INSTALL_PREFIX` argument during CMake configuration.
+
 ```
-
-</TabItem>
-<TabItem label="Linux (Debian)">
-
-```console
-sudo apt install \
-  build-essential \
-  cmake ninja-build extra-cmake-modules pkg-config scdoc \
-  qt6-base-dev qt6-image-formats-plugins qt6-networkauth-dev qt6-svg-dev \
-	cmark gamemode-dev libarchive-dev libcmark-dev libgl1-mesa-dev libqrencode-dev libtomlplusplus-dev libvulkan-dev zlib1g-dev \
-```
-
-To install JDK 17 on Debian:
-
-```console
-sudo apt install wget apt-transport-https gpg
-wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
-echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
-sudo apt update && sudo apt install temurin-17-jdk
-```
-
-While on Ubuntu (or derivatives) you can just:
-
-```console
-sudo apt install openjdk-17-jdk
-```
-
-</TabItem>
-<TabItem label="Linux (Arch)">
-
-```console
-sudo pacman -S \
-  base-devel \
-  cmake ninja extra-cmake-modules pkg-config scdoc \
-  qt6-base qt6-imageformats qt6-networkauth qt6-svg \
-  cmark gamemode libarchive mesa qrencode tomlplusplus vulkan-headers zlib \
-  jdk17-openjdk
-```
-
-</TabItem>
-</Tabs>
-
-### Getting the source
-
-We use [Git](https://git-scm.com/) for our version control. The command below will clone the repository, and fetch all submodules that come with it
-
-```console
 git clone --recursive https://github.com/Project-Tick/MeshMC.git
-cd MeshMC
+cd Launcher
+mkdir build
+cd build
+cmake \
+ -DCMAKE_C_COMPILER=/usr/bin/clang \
+ -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+ -DCMAKE_BUILD_TYPE=Release \
+ -DCMAKE_INSTALL_PREFIX:PATH="$(dirname $PWD)/dist/" \
+ -DCMAKE_PREFIX_PATH="/path/to/Qt5.6/" \
+ -DQt5_DIR="/path/to/Qt5.6/" \
+ -DLauncher_LAYOUT=mac-bundle \
+ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7 \
+ ..
+make install
 ```
 
-**The rest of the documentation assumes you have already cloned the repository.**
-
-### Building the source
-
-#### Configuration
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-Open "x64 Native Tools PowerShell" in Windows Terminal
-
-```powershell
-cmake --preset windows_msvc -D CMAKE_PREFIX_PATH="C:\path\to\Qt"
-```
+**Note:** The final app bundle may not run due to code signing issues, which
+need to be fixed with `codesign -fs -`.
 
 </TabItem>
-<TabItem label="Windows (MSYS2)">
+<TabItem label="Linux (Ubuntu)">
 
-```bash
-cmake --preset windows_mingw
-```
+## Build dependencies
+* A recent-ish operating system release
+  - Ubuntu >= 14.04
+* A C++ compiler capable of building C++11 code.
+* Qt 5.6+ Development tools (http://qt-project.org/downloads) ("Qt Online Installer for Linux (64 bit)") or the equivalent from your package manager. It is always better to use the Qt from your distribution, as long as it has a new enough version. (for example, `qttools5-dev`)
+* cmake 3.1 or newer
+* zlib (for example, `zlib1g-dev`)
+* Java JDK 8 (for example, `openjdk-8-jdk`)
+* GL headers (for example, `libgl1-mesa-dev`)
 
-</TabItem>
-<TabItem label="macOS">
+### Building from command line
+You need a source folder, a build folder and an install folder.
 
-```bash
-cmake --preset macos \
-  -D CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt"
-  -D CMAKE_OSX_DEPLOYMENT_TARGET=12 \
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-cmake --preset linux
-```
-
-</TabItem>
-</Tabs>
-
-#### Compilation
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-```bash
-cmake --build --preset windows_msvc --config Debug
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-cmake --build --preset windows_mingw --config Debug
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-cmake --build --preset macos --config Debug
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-cmake --build --preset linux --config Debug
-```
-
-</TabItem>
-</Tabs>
-
-#### Running Tests
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-```powershell
-ctest --preset windows_msvc --build-config Debug
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-ctest --preset windows_mingw --build-config Debug
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-ctest --preset macos --build-config Debug
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-ctest --preset linux --build-config Debug
-```
-
-</TabItem>
-</Tabs>
-
-#### Installation
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-```powershell
-cmake --install build --config Debug
-cmake --install build --config Debug --component portable # If you want to install a portable version
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-cmake --install build --config Debug
-cmake --install build --config Debug --component portable # If you want to install a portable version
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-cmake --install build --config Debug
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-cmake --install build --config Debug
-cmake --install build --config Debug --component portable # If you want to install a portable version
-DESTDIR="$pkgdir" cmake --install build --config Debug # If you're installing for a package
-```
-
-</TabItem>
-</Tabs>
-</TabItem>
-<TabItem label="Qt 5">
-### Prerequisites
-- A recent-ish operating system release
-  - Windows 10 (1809 or later. Older versions may be supported, but aren't tested)
-  - macOS >= 12
-  - Ubuntu >= 22.04 (or equivalent)
-- A C++ compiler supporting at least C++17.
-  - This includes GCC >= 8, Clang >= 5, and MSVC >= 19.15
-- Java JDK \<= 17
-- cmake >= 3.24
-- ninja
-- extra-cmake-modules
-- Qt 5.15 or later, with the following addons/plugins:
-  - Qt NetworkAuth
-- cmark
-- `glxinfo` (required at runtime, only on Linux)
-- libarchive
-- libGL headers (only on Linux)
-- libqrencode
-- pciutils (required at runtime, only on Linux)
-- scdoc (optional at build time, used to generate manpages)
-- tomlplusplus
-- vulkan-headers
-- zlib
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-:::note
-`winget` is installed by default on newer versions of Windows 11
-:::
-
-You should first install [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), a package manager for Windows.
-
-Once `winget` is available, install the MSVC toolchain with:
-
-```console
-winget install --source winget --exact --id Microsoft.VisualStudio.2019.BuildTools --override '--add Microsoft.VisualStudio.Workload.VCTools;includeRecommended'
-```
-
-Install JDK 17 with:
-
-```console
-winget install --source winget --exact --id EclipseAdoptium.Temurin.17.JDK
-```
-
-We will also be using Git:
-
-```console
-winget install --source winget --exact --id Git.Git
-```
-
-Qt can then be installed with [`aqt`](https://aqtinstall.readthedocs.io/en/latest/):
-
-Qt6:
-```console
-winget install --source winget --exact --id miurahr.aqtinstall
-aqt install-qt windows desktop 5.15.2 win64_msvc2019_64 -m qtnetworkauth
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-[MSYS2](https://msys2.org) may be installed with [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), or by following the setup guide [here](https://www.msys2.org/#installation):
-
-```console
-winget install --exact --id MSYS2.MSYS2 --source winget
-```
-
-Install JDK 17 with:
-
-```console
-winget install --source winget --exact --id EclipseAdoptium.Temurin.17.JDK
-```
-
-We **require** the CLANG(ARM)64 [environment](https://www.msys2.org/docs/environments/). After starting the environment, you may run the following to install all dependencies:
-
-```console
-pacman -Syu pactoys git
-pacboy -S \
-  toolchain:p \
-	cmake:p ninja:p \
-	extra-cmake-modules:p \
-	qt5-base:p qt5-imageformats:p qt5-networkauth:p qt5-svg:p \
-	cmark:p \
-	libarchive:p \
-	qrencode:p \
-	tomlplusplus:p \
-	vulkan-headers:p \
-	zlib:p
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-The XCode toolchain can be installed with:
+Let's say you want everything in `~/MeshMC/`:
 
 ```
-xcode-select --install
+# make all the folders
+mkdir ~/MeshMC && cd ~/MeshMC
+mkdir build
+mkdir install
+# clone the complete source
+git clone --recursive https://github.com/Project-Tick/MeshMC.git src
+# configure the project
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=../install ../src
+# build & install (use -j with the number of cores your CPU has)
+make -j8 install
 ```
 
-Qt and other dependencies can then be installed with the following [Homebrew](https://brew.sh/) command:
+**NOTE:** If you want to treat all warnings as errors add -DCMAKE_BUILD_TYPE=Debug to the above cmake command
 
-```console
-brew install cmake ninja extra-cmake-modules openjdk@17 vcpkg qt@5
-```
+You can use IDEs like KDevelop or QtCreator to open the CMake project if you want to work on the code.
 
-</TabItem>
-<TabItem label="Linux (Debian)">
+### Installing Qt using the installer (optional)
+1. Run the Qt installer.
+2. Choose a place to install Qt.
+3. Choose the components you want to install.
+    - You need Qt 5.6.x 64-bit ticked.
+    - You need Tools/Qt Creator ticked.
+    - Other components are selected by default, you can untick them if you don't need them.
+4. Accept the license agreements.
+5. Double check the install details and then click "Install".
+    - Installation can take a very long time, go grab a cup of tea or something and let it work.
 
-```console
-sudo apt install \
-  build-essential \
-  cmake ninja-build extra-cmake-modules pkg-config scdoc \
-  qtbase5-dev qt5-image-formats-plugins libqt5networkauth5-dev libqt5svg5-dev \
-	cmark gamemode-dev libarchive-dev libcmark-dev libgl1-mesa-dev libqrencode-dev libtomlplusplus-dev libvulkan-dev zlib1g-dev \
-```
-
-To install JDK 17 on Debian:
-
-```console
-sudo apt install wget apt-transport-https gpg
-wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
-echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
-sudo apt update && sudo apt install temurin-17-jdk
-```
-
-While on Ubuntu (or derivatives) you can just:
-
-```console
-sudo apt install openjdk-17-jdk
-```
-
-</TabItem>
-<TabItem label="Linux (Arch)">
-
-```console
-sudo pacman -S \
-  base-devel \
-  cmake ninja extra-cmake-modules pkg-config scdoc \
-  qt5-base qt5-imageformats qt5-networkauth qt5-svg \
-  cmark gamemode libarchive mesa qrencode tomlplusplus vulkan-headers zlib \
-  jdk17-openjdk
-```
-
-</TabItem>
-</Tabs>
-
-### Getting the source
-
-We use [Git](https://git-scm.com/) for our version control. The command below will clone the repository, and fetch all submodules that come with it
-
-```console
-git clone --recursive https://github.com/Project-Tick/MeshMC.git
-cd MeshMC
-```
-
-**The rest of the documentation assumes you have already cloned the repository.**
-
-### Building the source
-
-#### Configuration
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-Open "x64 Native Tools PowerShell" in Windows Terminal
-
-```powershell
-cmake --preset windows_msvc_qt5 -D CMAKE_PREFIX_PATH="C:\path\to\Qt"
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-cmake --preset windows_mingw_qt5
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-cmake --preset macos_qt5 \
-  -D CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt"
-  -D CMAKE_OSX_DEPLOYMENT_TARGET=12 \
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-cmake --preset linux_qt5
-```
-
-</TabItem>
-</Tabs>
-
-#### Compilation
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-```bash
-cmake --build --preset windows_msvc_qt5 --config Debug
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-cmake --build --preset windows_mingw_qt5 --config Debug
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-cmake --build --preset macos_qt5 --config Debug
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-cmake --build --preset linux_qt5 --config Debug
-```
-
-</TabItem>
-</Tabs>
-
-#### Running Tests
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-```powershell
-ctest --preset windows_msvc_qt5 --build-config Debug
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-ctest --preset windows_mingw_qt5 --build-config Debug
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-ctest --preset macos_qt5 --build-config Debug
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-ctest --preset linux_qt5 --build-config Debug
-```
-
-</TabItem>
-</Tabs>
-
-#### Installation
-
-<Tabs syncKey="buildInstructions">
-<TabItem label="Windows (MSVC)">
-
-```powershell
-cmake --install build --config Debug
-cmake --install build --config Debug --component portable # If you want to install a portable version
-```
-
-</TabItem>
-<TabItem label="Windows (MSYS2)">
-
-```bash
-cmake --install build --config Debug
-cmake --install build --config Debug --component portable # If you want to install a portable version
-```
-
-</TabItem>
-<TabItem label="macOS">
-
-```bash
-cmake --install build --config Debug
-```
-
-</TabItem>
-<TabItem label="Linux">
-
-```bash
-cmake --install build --config Debug
-cmake --install build --config Debug --component portable # If you want to install a portable version
-DESTDIR="$pkgdir" cmake --install build --config Debug # If you're installing for a package
-```
-
-</TabItem>
-</Tabs>
 </TabItem>
 </Tabs>
 
@@ -692,14 +192,6 @@ Always use a separate build directory (the presets handle this automatically wit
 Building under Windows Subsystem for Linux is explicitly blocked. Use a native
 Linux environment, the Windows presets, or a container.
 
-### LTO Failures
-
-If you get linker errors with LTO enabled, disable it:
-
-```bash
-cmake --preset linux -DENABLE_LTO=OFF
-```
-
 ### Missing Qt
 
 If CMake cannot find Qt, make sure the development packages for the Qt major
@@ -722,24 +214,9 @@ A missing `NetworkAuth` is the most common failure on Qt 5, since most
 distros ship it as its own package (`qt5-qtnetworkauth-devel`,
 `libqt5networkauth5-dev`) rather than as part of qtbase.
 
-### Missing ECM (Extra CMake Modules)
-
-With a preset, vcpkg installs ECM as a host dependency and this should not
-happen — check that `cmake/vcpkg` is actually checked out.
-
-When configuring **without** the vcpkg toolchain, ECM has to come from your
-package manager:
-
-- **Debian/Ubuntu:** `sudo apt-get install extra-cmake-modules`
-- **Fedora:** `sudo dnf install extra-cmake-modules`
-- **Arch:** `sudo pacman -S extra-cmake-modules`
-- **macOS:** `brew install extra-cmake-modules`
-
 ### Submodule Errors
 
-If CMake cannot find the vcpkg toolchain file
-(`cmake/vcpkg/scripts/buildsystems/vcpkg.cmake`), or complains about missing
-files under `libraries/`, the submodule is not checked out:
+If CMake cannot find complains about missing files under `libraries/`, the submodule is not checked out:
 
 ```bash
 git submodule update --init --recursive
